@@ -1,17 +1,36 @@
-import { Button, VerticalBox } from "std-widgets.slint";
+import { VerticalBox , HorizontalBox, Button} from "std-widgets.slint";
+import { BorderlessWindow } from "borderless-window.slint";
 
-export component AppWindow inherits Window {
-    in-out property<int> counter: 42;
-    callback request-increase-value();
-    VerticalBox {
-        Text {
-            text: "Counter: \{root.counter}";
-        }
-        Button {
-            text: "Increase value";
-            clicked => {
-                root.request-increase-value();
-            }
-        }
-     }
+export component AppWindow inherits BorderlessWindow {
+    title: "😀Hello，Slint！";
+    preferred-width: 480px;
+    preferred-height: 320px;
+
+    callback quit();
+    callback window_minimized(minizimed: bool);
+    callback window_maximized(maximized: bool);
+    callback window_moved(dx: length, dy: length);
+    callback mouse-down(x: int, y: int);
+    callback mouse-move(x: int, y: int);
+
+    on-close-window() => {
+        quit();
+    }
+
+    on-minimized-window(enable) => {
+        window-minimized(enable);
+    }
+
+    on-maximized-window(enable) => {
+        window-maximized(enable);
+    }
+
+    on-move-window(offset-x, offset-y) => {
+        window-moved(offset-x, offset-y);
+    }
+
+    Text {
+        color: #2a2a2a;
+        text: "Hello World!";
+    }
 }
