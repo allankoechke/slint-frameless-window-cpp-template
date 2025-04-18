@@ -5,13 +5,22 @@ int main(int argc, char **argv)
     auto ui = AppWindow::create();
 
     // Handle window closing ...
-    ui->on_quit([&] -> void { ui->window().dispatch_close_requested_event(); });
+    ui->on_quit([&] -> void
+    {
+        ui->window().dispatch_close_requested_event();
+    });
 
     // Handle minimize window action
-    ui->on_window_minimized([&](const bool enabled) -> void { ui->window().set_minimized(enabled); });
+    ui->on_window_minimized([&](const bool enabled) -> void
+    {
+        ui->window().set_minimized(enabled);
+    });
 
     // Handle minimize window action
-    ui->on_window_maximized([&](const bool enabled) -> void { ui->window().set_maximized(enabled); });
+    ui->on_window_maximized([&](const bool enabled) -> void
+    {
+        ui->window().set_maximized(enabled);
+    });
 
     ui->on_window_moved([&](const double &dx, const double &dy) -> void
     {
